@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Collections — JOUD</title>
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="on-light">
+
+<header class="site-header" id="site-header"></header>
+
+<main id="main">
+  <div class="page-header">
+    <p class="eyebrow">Curated Volumes</p>
+    <h1 class="page-title">Collections</h1>
+    <p class="breadcrumb"><a href="index.html">Home</a> / Collections</p>
+  </div>
+
+  <div id="collections-list"></div>
+</main>
+
+<footer class="site-footer" id="site-footer"></footer>
+<div id="site-overlays"></div>
+
+<script src="js/data.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/layout.js"></script>
+<script>
+  injectLayout("collections");
+
+  const params = new URLSearchParams(location.search);
+  const targetCollection = params.get("collection");
+
+  const list = document.getElementById("collections-list");
+
+  const collectionsToShow = targetCollection
+    ? COLLECTIONS.filter(c => c.id === targetCollection)
+    : COLLECTIONS;
+
+  list.innerHTML = collectionsToShow.map((c, i) => {
+    const products = PRODUCTS.filter(p => p.collection === c.id);
+    return `
+    <section class="section ${i > 0 ? '' : 'section-tight'}">
+      <div class="container">
+        <div class="section-head" data-reveal>
+          <div>
+            <p class="eyebrow">${c.tag}</p>
+            <h2 class="section-title">${c.name}</h2>
+            <p style="color:var(--off); max-width:48ch; margin-top:14px; font-size:14.5px;">${c.blurb}</p>
+          </div>
+          <a href="shop.html?collection=${c.id}" class="section-link">Shop ${c.name}</a>
+        </div>
+        <div class="product-grid">
+          ${products.map(productCardHTML).join("")}
+        </div>
+      </div>
+    </section>`;
+  }).join("");
+
+  if (collectionsToShow.length === 0) {
+    list.innerHTML = `<div class="shop-empty"><h3>Collection not found</h3><p><a href="collections.html" class="btn-underline">View all collections</a></p></div>`;
+  }
+
+  bindProductCardEvents();
+  initScrollReveal();
+</script>
+</body>
+</html>

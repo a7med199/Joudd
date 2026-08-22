@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Shop — JOUD</title>
+<meta name="description" content="Shop the full JOUD catalog: T-Shirts, Sweatpants, and Accessories." />
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="on-light">
+
+<header class="site-header" id="site-header"></header>
+
+<main id="main">
+  <div class="page-header">
+    <p class="eyebrow">The Full Range</p>
+    <h1 class="page-title">Shop</h1>
+    <p class="breadcrumb"><a href="index.html">Home</a> / Shop</p>
+  </div>
+
+  <div class="container" style="padding-top:50px; padding-bottom:120px;">
+    <div class="shop-layout">
+
+      <!-- FILTERS -->
+      <aside class="filters" id="filters">
+        <div class="filter-group">
+          <h4>Gender</h4>
+          <div id="filter-genders"></div>
+        </div>
+        <div class="filter-group">
+          <h4>Category</h4>
+          <div id="filter-categories"></div>
+        </div>
+        <div class="filter-group">
+          <h4>Size</h4>
+          <div id="filter-sizes"></div>
+        </div>
+        <div class="filter-group">
+          <h4>Collection</h4>
+          <div id="filter-collections"></div>
+        </div>
+        <div class="filter-group">
+          <h4>Price</h4>
+          <div class="price-range">
+            <input type="range" id="price-max" min="0" max="500" step="10" value="500" />
+            <div class="price-range-value"><span>$0</span><span id="price-max-label">$500</span></div>
+          </div>
+        </div>
+        <div class="filter-group">
+          <label class="filter-option">
+            <input type="checkbox" id="filter-new" />
+            <span>New Arrivals</span>
+          </label>
+          <label class="filter-option">
+            <input type="checkbox" id="filter-bestseller" />
+            <span>Best Sellers</span>
+          </label>
+        </div>
+        <button class="clear-filters" id="clear-filters">Clear All Filters</button>
+      </aside>
+
+      <!-- RESULTS -->
+      <div>
+        <div class="shop-toolbar">
+          <div class="shop-search">
+            <svg viewBox="0 0 24 24" width="16" height="16"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="1.4"/><line x1="16.2" y1="16.2" x2="21" y2="21" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+            <input type="text" id="shop-search-input" placeholder="Search this shop&hellip;" />
+          </div>
+          <div style="display:flex; align-items:center; gap:20px;">
+            <span class="result-count" id="result-count"></span>
+            <select class="sort-select" id="sort-select">
+              <option value="featured">Sort: Featured</option>
+              <option value="price-asc">Price: Low to High</option>
+              <option value="price-desc">Price: High to Low</option>
+              <option value="name-asc">Name: A–Z</option>
+              <option value="new">New Arrivals First</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="active-chips" id="active-chips"></div>
+
+        <div class="shop-grid" id="shop-grid"></div>
+        <div class="shop-empty" id="shop-empty" style="display:none;">
+          <h3>No pieces match your filters</h3>
+          <p>Try clearing a filter or searching a different term.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer" id="site-footer"></footer>
+<div id="site-overlays"></div>
+
+<script src="js/data.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/layout.js"></script>
+<script>
+  injectLayout("shop");
+
+  const params = new URLSearchParams(location.search);
+
+  const state = {
+    query: params.get("q") || "",
+    categories: params.get("category") ? [params.get("category")] : [],
+    collections: params.get("collection") ? [params.get("collection")] : [],
+    genders: params.get("gender") ? [params.get("gender")] : [],
+    sizes: [],
+    priceMax: 500,
+    onlyNew: params.get("filter") === "new",
+    onlyBestSeller: params.get("filter") === "bestseller",
+    sort: "featured",
+  };
+
+  const allSizes = ["XS","S","M","L","XL","XXL","One Size"];
+
+  function renderFilterControls() {
+    document.getElementById("filter-genders").innerHTML = GENDERS.map(g => `
+      <label class="filter-option">
+        <input type="checkbox" value="${g.id}" data-filter="gender" ${state.genders.includes(g.id) ? "checked" : ""}/>
+        <span>${g.name}</span>
+        <em>${PRODUCTS.filter(p=>p.gender===g.id).length}</em>
+      </label>`).join("");
+
+    document.getElementById("filter-categories").innerHTML = CATEGORIES.map(c => `
+      <label class="filter-option">
+        <input type="checkbox" value="${c.id}" data-filter="category" ${state.categories.includes(c.id) ? "checked" : ""}/>
+        <span>${c.name}</span>
+        <em>${PRODUCTS.filter(p=>p.category===c.id).length}</em>
+      </label>`).join("");
+
+    document.getElementById("filter-sizes").innerHTML = allSizes.map(s => `
+      <label class="filter-option">
+        <input type="checkbox" value="${s}" data-filter="size" ${state.sizes.includes(s) ? "checked" : ""}/>
+        <span>${s}</span>
+      </label>`).join("");
+
+    document.getElementById("filter-collections").innerHTML = COLLECTIONS.map(c => `
+      <label class="filter-option">
+        <input type="checkbox" value="${c.id}" data-filter="collection" ${state.collections.includes(c.id) ? "checked" : ""}/>
+        <span>${c.name}</span>
+      </label>`).join("");
+
+    document.getElementById("filter-new").checked = state.onlyNew;
+    document.getElementById("filter-bestseller").checked = state.onlyBestSeller;
+    document.getElementById("shop-search-input").value = state.query;
+    document.getElementById("price-max").value = state.priceMax;
+    document.getElementById("price-max-label").textContent = "$" + state.priceMax;
+  }
+
+  function getFiltered() {
+    let list = PRODUCTS.slice();
+    if (state.query.trim()) {
+      const q = state.query.trim().toLowerCase();
+      list = list.filter(p => p.name.toLowerCase().includes(q) || p.category.includes(q) || p.collection.includes(q));
+    }
+    if (state.genders.length) list = list.filter(p => state.genders.includes(p.gender));
+    if (state.categories.length) list = list.filter(p => state.categories.includes(p.category));
+    if (state.collections.length) list = list.filter(p => state.collections.includes(p.collection));
+    if (state.sizes.length) list = list.filter(p => p.sizes.some(s => state.sizes.includes(s)));
+    if (state.onlyNew) list = list.filter(p => p.isNew);
+    if (state.onlyBestSeller) list = list.filter(p => p.isBestSeller);
+    list = list.filter(p => p.price <= state.priceMax);
+
+    switch (state.sort) {
+      case "price-asc": list.sort((a,b)=>a.price-b.price); break;
+      case "price-desc": list.sort((a,b)=>b.price-a.price); break;
+      case "name-asc": list.sort((a,b)=>a.name.localeCompare(b.name)); break;
+      case "new": list.sort((a,b)=>(b.isNew?1:0)-(a.isNew?1:0)); break;
+      default: break;
+    }
+    return list;
+  }
+
+  function renderChips() {
+    const chips = [];
+    state.genders.forEach(id => chips.push({ label: GENDERS.find(g=>g.id===id)?.name, clear: () => { state.genders = state.genders.filter(g=>g!==id); }}));
+    state.categories.forEach(id => chips.push({ label: CATEGORIES.find(c=>c.id===id)?.name, clear: () => { state.categories = state.categories.filter(c=>c!==id); }}));
+    state.collections.forEach(id => chips.push({ label: COLLECTIONS.find(c=>c.id===id)?.name, clear: () => { state.collections = state.collections.filter(c=>c!==id); }}));
+    state.sizes.forEach(s => chips.push({ label: "Size " + s, clear: () => { state.sizes = state.sizes.filter(x=>x!==s); }}));
+    if (state.onlyNew) chips.push({ label: "New Arrivals", clear: () => { state.onlyNew = false; }});
+    if (state.onlyBestSeller) chips.push({ label: "Best Sellers", clear: () => { state.onlyBestSeller = false; }});
+    if (state.priceMax < 500) chips.push({ label: "Under $" + state.priceMax, clear: () => { state.priceMax = 500; }});
+    if (state.query.trim()) chips.push({ label: '"' + state.query.trim() + '"', clear: () => { state.query = ""; }});
+
+    const host = document.getElementById("active-chips");
+    host.innerHTML = chips.map((c,i) => `<span class="chip" data-chip-index="${i}">${c.label} <button aria-label="Remove filter">&times;</button></span>`).join("");
+    host.querySelectorAll(".chip button").forEach((btn, i) => {
+      btn.addEventListener("click", () => { chips[i].clear(); renderAll(); });
+    });
+  }
+
+  function renderGrid() {
+    const list = getFiltered();
+    const grid = document.getElementById("shop-grid");
+    const empty = document.getElementById("shop-empty");
+    document.getElementById("result-count").textContent = list.length + (list.length === 1 ? " piece" : " pieces");
+
+    if (list.length === 0) {
+      grid.innerHTML = "";
+      empty.style.display = "block";
+    } else {
+      empty.style.display = "none";
+      grid.innerHTML = list.map(productCardHTML).join("");
+    }
+    bindProductCardEvents();
+    initScrollReveal();
+  }
+
+  function renderAll() {
+    renderFilterControls();
+    renderChips();
+    renderGrid();
+  }
+
+  document.getElementById("filters").addEventListener("change", (e) => {
+    const t = e.target;
+    const kind = t.getAttribute("data-filter");
+    if (kind === "gender") {
+      state.genders = t.checked ? [...state.genders, t.value] : state.genders.filter(v=>v!==t.value);
+    } else if (kind === "category") {
+      state.categories = t.checked ? [...state.categories, t.value] : state.categories.filter(v=>v!==t.value);
+    } else if (kind === "size") {
+      state.sizes = t.checked ? [...state.sizes, t.value] : state.sizes.filter(v=>v!==t.value);
+    } else if (kind === "collection") {
+      state.collections = t.checked ? [...state.collections, t.value] : state.collections.filter(v=>v!==t.value);
+    } else if (t.id === "filter-new") {
+      state.onlyNew = t.checked;
+    } else if (t.id === "filter-bestseller") {
+      state.onlyBestSeller = t.checked;
+    } else if (t.id === "price-max") {
+      state.priceMax = +t.value;
+      document.getElementById("price-max-label").textContent = "$" + state.priceMax;
+    }
+    renderAll();
+  });
+
+  document.getElementById("price-max").addEventListener("input", (e) => {
+    document.getElementById("price-max-label").textContent = "$" + e.target.value;
+  });
+
+  document.getElementById("shop-search-input").addEventListener("input", (e) => {
+    state.query = e.target.value;
+    renderAll();
+  });
+
+  document.getElementById("sort-select").addEventListener("change", (e) => {
+    state.sort = e.target.value;
+    renderGrid();
+  });
+
+  document.getElementById("clear-filters").addEventListener("click", () => {
+    state.query = ""; state.categories = []; state.collections = []; state.sizes = []; state.genders = [];
+    state.priceMax = 500; state.onlyNew = false; state.onlyBestSeller = false;
+    renderAll();
+  });
+
+  renderAll();
+</script>
+</body>
+</html>

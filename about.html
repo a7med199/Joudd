@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>About — JOUD</title>
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="on-light">
+
+<header class="site-header" id="site-header"></header>
+
+<main id="main">
+  <div class="about-hero">
+    <p class="eyebrow" style="justify-content:center;">Since 2019</p>
+    <h1 class="section-title">A discipline of three tones.</h1>
+    <p>JOUD began as a rejection of noise — of endless seasonal color stories and disposable cloth. We chose black, white, and gold, and have spent every collection since proving that restraint is not a limitation, but a craft.</p>
+  </div>
+
+  <section class="section section-tight">
+    <div class="container split">
+      <div class="split-media" data-reveal id="about-media-1"></div>
+      <div class="split-copy" data-reveal>
+        <p class="eyebrow">Our Approach</p>
+        <h2 class="section-title">Fewer pieces, worn longer.</h2>
+        <p>Each garment begins with cloth, not sketches. We source heavyweight cotton, brushed fleece, and structured wool-blends first, then design around what the material wants to do.</p>
+        <p>Every release is small and considered. We would rather sell out of a piece we're proud of than restock something built to be replaced.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head" data-reveal>
+        <div>
+          <p class="eyebrow">What We Stand For</p>
+          <h2 class="section-title">Values</h2>
+        </div>
+      </div>
+      <div class="values-grid">
+        <div class="value-card" data-reveal>
+          <b>01</b>
+          <h4>Material First</h4>
+          <p>We choose cloth before silhouette. If the fabric isn't right, the design doesn't move forward.</p>
+        </div>
+        <div class="value-card" data-reveal>
+          <b>02</b>
+          <h4>Restraint as Craft</h4>
+          <p>Black, white, and gold — a fixed palette that forces every decision to be about cut, weight, and finish.</p>
+        </div>
+        <div class="value-card" data-reveal>
+          <b>03</b>
+          <h4>Built to Outlast</h4>
+          <p>Reinforced seams, considered hardware, and finishes designed to age well rather than wear out.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-tight">
+    <div class="container">
+      <div class="section-head" data-reveal>
+        <div>
+          <p class="eyebrow">Timeline</p>
+          <h2 class="section-title">The House So Far</h2>
+        </div>
+      </div>
+      <div class="timeline">
+        <div class="timeline-row" data-reveal>
+          <div class="timeline-year">2019</div>
+          <div class="timeline-copy">
+            <h4>Noir Line launches</h4>
+            <p>JOUD opens with a tightly edited run of tonal black essentials — the foundation of everything since.</p>
+          </div>
+        </div>
+        <div class="timeline-row" data-reveal>
+          <div class="timeline-year">2021</div>
+          <div class="timeline-copy">
+            <h4>Gold Standard introduced</h4>
+            <p>Metallic gold hardware and thread detailing become a permanent signature across outerwear and accessories.</p>
+          </div>
+        </div>
+        <div class="timeline-row" data-reveal>
+          <div class="timeline-year">2023</div>
+          <div class="timeline-copy">
+            <h4>Studio Essentials</h4>
+            <p>A dedicated line of everyday staples, engineered quietly, for pieces worn on rotation rather than occasion.</p>
+          </div>
+        </div>
+        <div class="timeline-row" data-reveal>
+          <div class="timeline-year">2025</div>
+          <div class="timeline-copy">
+            <h4>Monochrome debuts</h4>
+            <p>Ivory and ink, stripped of gold entirely — the quietest collection JOUD has released to date.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="newsletter-band" data-reveal>
+    <div class="container">
+      <p class="eyebrow" style="justify-content:center;">Join Us</p>
+      <h2 class="section-title">Shop the current collection</h2>
+      <div class="hero-actions" style="justify-content:center; margin-top:10px;">
+        <a href="shop.html" class="btn btn-gold">Enter the Shop</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer" id="site-footer"></footer>
+<div id="site-overlays"></div>
+
+<script src="js/data.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/layout.js"></script>
+<script>
+  injectLayout("about");
+  document.getElementById("about-media-1").innerHTML = `<img src="${PRODUCTS[16].images[1]}" alt="JOUD atelier" loading="lazy" />`;
+  initScrollReveal();
+</script>
+</body>
+</html>

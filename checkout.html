@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Checkout — JOUD</title>
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<header class="site-header" id="site-header"></header>
+
+<main id="main">
+
+  <!-- CHECKOUT VIEW -->
+  <div id="checkout-view">
+    <div class="page-header">
+      <p class="eyebrow">Secure Checkout</p>
+      <h1 class="page-title">Checkout</h1>
+      <p class="breadcrumb"><a href="index.html">Home</a> / <a href="shop.html">Shop</a> / Checkout</p>
+    </div>
+
+    <div class="checkout-layout">
+      <div>
+        <div class="checkout-steps">
+          <div class="checkout-step is-active"><b>1</b> Shipping</div>
+          <div class="checkout-step is-active"><b>2</b> Payment</div>
+          <div class="checkout-step"><b>3</b> Confirmation</div>
+        </div>
+
+        <form id="checkout-form" novalidate>
+          <div class="form-section">
+            <h3>Shipping Details</h3>
+            <div class="form-row">
+              <div class="form-field" data-field="firstName">
+                <label for="co-first">First Name</label>
+                <input id="co-first" name="firstName" type="text" placeholder="Jane" />
+                <span class="field-error"></span>
+              </div>
+              <div class="form-field" data-field="lastName">
+                <label for="co-last">Last Name</label>
+                <input id="co-last" name="lastName" type="text" placeholder="Doe" />
+                <span class="field-error"></span>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-field" data-field="email">
+                <label for="co-email">Email</label>
+                <input id="co-email" name="email" type="email" placeholder="jane@email.com" />
+                <span class="field-error"></span>
+              </div>
+              <div class="form-field" data-field="phone">
+                <label for="co-phone">Phone</label>
+                <input id="co-phone" name="phone" type="tel" placeholder="+20 10 000 0000" />
+                <span class="field-error"></span>
+              </div>
+            </div>
+            <div class="form-field" data-field="address" style="margin-bottom:18px;">
+              <label for="co-address">Street Address</label>
+              <input id="co-address" name="address" type="text" placeholder="14 El Haram Street" />
+              <span class="field-error"></span>
+            </div>
+            <div class="form-row">
+              <div class="form-field" data-field="city">
+                <label for="co-city">City</label>
+                <input id="co-city" name="city" type="text" placeholder="Giza" />
+                <span class="field-error"></span>
+              </div>
+              <div class="form-field" data-field="postal">
+                <label for="co-postal">Postal Code</label>
+                <input id="co-postal" name="postal" type="text" placeholder="12511" />
+                <span class="field-error"></span>
+              </div>
+            </div>
+            <div class="form-field" data-field="country">
+              <label for="co-country">Country</label>
+              <select id="co-country" name="country">
+                <option value="">Select country</option>
+                <option>Egypt</option>
+                <option>United Arab Emirates</option>
+                <option>Saudi Arabia</option>
+                <option>United Kingdom</option>
+                <option>United States</option>
+                <option>France</option>
+              </select>
+              <span class="field-error"></span>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <h3>Payment</h3>
+            <div class="form-field" data-field="cardName" style="margin-bottom:18px;">
+              <label for="co-card-name">Name on Card</label>
+              <input id="co-card-name" name="cardName" type="text" placeholder="Jane Doe" />
+              <span class="field-error"></span>
+            </div>
+            <div class="form-field" data-field="cardNumber" style="margin-bottom:18px;">
+              <label for="co-card-number">Card Number</label>
+              <input id="co-card-number" name="cardNumber" type="text" inputmode="numeric" placeholder="1234 5678 9012 3456" maxlength="19" />
+              <span class="field-error"></span>
+            </div>
+            <div class="form-row">
+              <div class="form-field" data-field="expiry">
+                <label for="co-expiry">Expiry (MM/YY)</label>
+                <input id="co-expiry" name="expiry" type="text" placeholder="09/28" maxlength="5" />
+                <span class="field-error"></span>
+              </div>
+              <div class="form-field" data-field="cvc">
+                <label for="co-cvc">CVC</label>
+                <input id="co-cvc" name="cvc" type="text" inputmode="numeric" placeholder="123" maxlength="4" />
+                <span class="field-error"></span>
+              </div>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-gold btn-block" id="checkout-submit">Place Order</button>
+        </form>
+      </div>
+
+      <div class="order-summary">
+        <h3>Order Summary</h3>
+        <div id="checkout-summary-lines"></div>
+        <div class="summary-totals" id="checkout-totals"></div>
+        <div class="promo-row">
+          <input type="text" placeholder="Promo code" id="promo-input" />
+          <button class="btn-underline" id="promo-apply">Apply</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONFIRMATION VIEW -->
+  <div class="confirmation" id="confirmation-view" style="display:none;">
+    <svg class="confirmation-seal" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="50" cy="50" r="46" fill="none" stroke="#c9a24a" stroke-width="1.2"/>
+      <circle cx="50" cy="50" r="37" fill="none" stroke="#c9a24a" stroke-width="0.6" opacity="0.6"/>
+      <path d="M35 51l10 10 20-22" fill="none" stroke="#e8cd8a" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <p class="eyebrow" style="justify-content:center;">Order Confirmed</p>
+    <h1>Thank you, <span id="confirm-name">friend</span>.</h1>
+    <p>Your order has been received and is being prepared by our studio team. A confirmation has been sent to <strong id="confirm-email"></strong>.</p>
+    <div class="order-number">Order #<span id="confirm-order-id"></span></div>
+    <div class="confirmation-actions">
+      <a href="shop.html" class="btn btn-gold">Continue Shopping</a>
+      <a href="index.html" class="btn btn-ghost">Back to Home</a>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer" id="site-footer"></footer>
+<div id="site-overlays"></div>
+
+<script src="js/data.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/layout.js"></script>
+<script>
+  injectLayout("shop");
+
+  function renderSummary() {
+    const cart = Store.getCart();
+    const linesHost = document.getElementById("checkout-summary-lines");
+    const totalsHost = document.getElementById("checkout-totals");
+    const submitBtn = document.getElementById("checkout-submit");
+
+    if (cart.length === 0) {
+      linesHost.innerHTML = `<p style="color:var(--off); font-size:13.5px; padding:20px 0;">Your bag is empty. <a href="shop.html" class="btn-underline" style="margin-left:6px;">Go shopping</a></p>`;
+      totalsHost.innerHTML = "";
+      submitBtn.disabled = true;
+      return;
+    }
+    submitBtn.disabled = false;
+
+    linesHost.innerHTML = cart.map(item => {
+      const p = getProductById(item.id);
+      if (!p) return "";
+      return `
+      <div class="summary-line">
+        <img src="${p.images[0]}" alt="${p.name}" />
+        <div class="summary-line-info">
+          <div class="summary-line-name">${p.name}</div>
+          <div class="summary-line-meta">Size ${item.size} &middot; Qty ${item.qty}</div>
+        </div>
+        <div>${formatPrice(p.price * item.qty)}</div>
+      </div>`;
+    }).join("");
+
+    const subtotal = Store.cartTotal();
+    const shipping = subtotal >= 200 || subtotal === 0 ? 0 : 15;
+    const discount = window.__promoApplied ? subtotal * 0.1 : 0;
+    const tax = (subtotal - discount) * 0.05;
+    const total = subtotal - discount + shipping + tax;
+
+    totalsHost.innerHTML = `
+      <div><span>Subtotal</span><span>${formatPrice(subtotal)}</span></div>
+      ${discount ? `<div><span>Promo (10%)</span><span>&minus;${formatPrice(discount)}</span></div>` : ""}
+      <div><span>Shipping</span><span>${shipping === 0 ? "Free" : formatPrice(shipping)}</span></div>
+      <div><span>Estimated Tax</span><span>${formatPrice(tax)}</span></div>
+      <div class="grand"><span>Total</span><span>${formatPrice(total)}</span></div>
+    `;
+  }
+
+  document.getElementById("promo-apply").addEventListener("click", () => {
+    const val = document.getElementById("promo-input").value.trim().toUpperCase();
+    if (val === "JOUD10") {
+      window.__promoApplied = true;
+      showToast("Promo code applied — 10% off");
+    } else {
+      showToast("Invalid promo code");
+    }
+    renderSummary();
+  });
+
+  renderSummary();
+
+  /* --------------------------- Checkout form validation --------------------------- */
+  const form = document.getElementById("checkout-form");
+
+  function setFieldError(field, message) {
+    const wrap = form.querySelector(`[data-field="${field}"]`);
+    if (!wrap) return;
+    wrap.classList.toggle("has-error", !!message);
+    wrap.querySelector(".field-error").textContent = message || "";
+  }
+
+  function validateCheckout() {
+    let valid = true;
+    const v = form;
+    const required = {
+      firstName: "First name is required.",
+      lastName: "Last name is required.",
+      address: "Address is required.",
+      city: "City is required.",
+      postal: "Postal code is required.",
+      country: "Please select a country.",
+      cardName: "Name on card is required.",
+    };
+    Object.entries(required).forEach(([key, msg]) => {
+      if (!v[key].value.trim()) { setFieldError(key, msg); valid = false; }
+      else setFieldError(key, "");
+    });
+
+    const email = v.email.value.trim();
+    if (!email) { setFieldError("email", "Email is required."); valid = false; }
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { setFieldError("email", "Enter a valid email address."); valid = false; }
+    else setFieldError("email", "");
+
+    const phone = v.phone.value.trim();
+    if (!phone) { setFieldError("phone", "Phone number is required."); valid = false; }
+    else if (!/^[0-9+()\-\s]{7,}$/.test(phone)) { setFieldError("phone", "Enter a valid phone number."); valid = false; }
+    else setFieldError("phone", "");
+
+    const cardNumber = v.cardNumber.value.replace(/\s+/g, "");
+    if (!cardNumber) { setFieldError("cardNumber", "Card number is required."); valid = false; }
+    else if (!/^\d{13,16}$/.test(cardNumber)) { setFieldError("cardNumber", "Enter a valid card number."); valid = false; }
+    else setFieldError("cardNumber", "");
+
+    const expiry = v.expiry.value.trim();
+    if (!expiry) { setFieldError("expiry", "Expiry date is required."); valid = false; }
+    else if (!/^(0[1-9]|1[0-2])\/\d{2}$/.test(expiry)) { setFieldError("expiry", "Use MM/YY format."); valid = false; }
+    else setFieldError("expiry", "");
+
+    const cvc = v.cvc.value.trim();
+    if (!cvc) { setFieldError("cvc", "CVC is required."); valid = false; }
+    else if (!/^\d{3,4}$/.test(cvc)) { setFieldError("cvc", "Enter a valid CVC."); valid = false; }
+    else setFieldError("cvc", "");
+
+    return valid;
+  }
+
+  // Light live formatting for card number & expiry
+  form.cardNumber.addEventListener("input", (e) => {
+    let digits = e.target.value.replace(/\D/g, "").slice(0, 16);
+    e.target.value = digits.replace(/(.{4})/g, "$1 ").trim();
+  });
+  form.expiry.addEventListener("input", (e) => {
+    let digits = e.target.value.replace(/\D/g, "").slice(0, 4);
+    if (digits.length >= 3) digits = digits.slice(0, 2) + "/" + digits.slice(2);
+    e.target.value = digits;
+  });
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    if (Store.getCart().length === 0) {
+      showToast("Your bag is empty");
+      return;
+    }
+    if (!validateCheckout()) {
+      showToast("Please review the highlighted fields");
+      const firstError = form.querySelector(".has-error");
+      if (firstError) firstError.scrollIntoView({ behavior: "smooth", block: "center" });
+      return;
+    }
+
+    const orderId = "JD" + Math.floor(100000 + Math.random() * 899999);
+    document.getElementById("confirm-name").textContent = form.firstName.value.trim();
+    document.getElementById("confirm-email").textContent = form.email.value.trim();
+    document.getElementById("confirm-order-id").textContent = orderId;
+
+    document.getElementById("checkout-view").style.display = "none";
+    document.getElementById("confirmation-view").style.display = "block";
+    window.scrollTo({ top: 0, behavior: "smooth" });
+
+    Store.clearCart();
+    showToast("Order placed successfully");
+  });
+</script>
+</body>
+</html>
