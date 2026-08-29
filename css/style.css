@@ -316,7 +316,7 @@ h3, .h3{ font-family: var(--font-display); font-weight: 500; }
 }
 .hero-kicker{ margin-bottom: 22px; }
 .hero-title{
-  font-size: clamp(3rem, 5vw, 5.5rem);
+  font-size: clamp(2rem, 3vw, 4rem);
   line-height: .95;
   letter-spacing: -.01em;
   max-width: 16ch;
