@@ -5,108 +5,443 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>About — JOUD</title>
 <link rel="stylesheet" href="css/style.css" />
+<style>
+  /* ============================================
+     ABOUT PAGE CUSTOM STYLES
+     ============================================ */
+  .about-hero {
+    padding: 120px var(--gutter) 90px;
+    max-width: var(--container);
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+  }
+
+  .about-hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 2px;
+    background: var(--gold);
+    opacity: 0.4;
+  }
+
+  .about-hero h1 {
+    font-size: clamp(40px, 5.5vw, 68px);
+    font-weight: 500;
+    margin-top: 24px;
+    max-width: 14ch;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+  }
+
+  .about-hero h1 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .about-hero p {
+    max-width: 52ch;
+    margin: 28px auto 0;
+    color: rgba(10, 10, 9, 0.55);
+    font-size: 18px;
+    line-height: 1.8;
+    font-weight: 400;
+  }
+
+  .section-title-lg {
+    font-size: clamp(32px, 4vw, 48px);
+    font-weight: 500;
+    line-height: 1.08;
+    letter-spacing: -0.01em;
+  }
+
+  .text-muted {
+    color: rgba(10, 10, 9, 0.6);
+    font-size: 15px;
+    line-height: 1.8;
+  }
+
+  .text-muted strong {
+    color: #0a0a0a;
+    font-weight: 600;
+  }
+
+  .stat-number {
+    font-family: var(--font-display);
+    font-size: 36px;
+    color: var(--gold);
+    display: block;
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(10, 10, 9, 0.4);
+    margin-top: 6px;
+    display: block;
+  }
+
+  .stat-divider {
+    width: 1px;
+    background: rgba(0, 0, 0, 0.08);
+    align-self: stretch;
+  }
+
+  .card-3d {
+    background: var(--white);
+    padding: 36px 30px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    transition: transform 0.4s cubic-bezier(0.16, 0.84, 0.44, 1),
+                box-shadow 0.4s cubic-bezier(0.16, 0.84, 0.44, 1);
+    position: relative;
+  }
+
+  .card-3d:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.10);
+  }
+
+  .card-3d .number {
+    font-family: var(--font-display);
+    font-size: 28px;
+    color: var(--gold);
+    display: block;
+    margin-bottom: 14px;
+    opacity: 0.7;
+  }
+
+  .card-3d h4 {
+    font-size: 17px;
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
+
+  .card-3d p {
+    color: rgba(10, 10, 9, 0.6);
+    font-size: 13.5px;
+    line-height: 1.7;
+  }
+
+  .quote-block {
+    margin-top: 36px;
+    padding: 32px 36px;
+    background: #f6f4ee;
+    border-left: 3px solid var(--gold);
+    position: relative;
+  }
+
+  .quote-block::before {
+    content: '"';
+    position: absolute;
+    top: -6px;
+    left: 16px;
+    font-family: var(--font-display);
+    font-size: 48px;
+    color: var(--gold);
+    opacity: 0.2;
+    line-height: 1;
+  }
+
+  .quote-block p {
+    font-family: var(--font-display);
+    font-size: clamp(20px, 2.2vw, 26px);
+    color: #0a0a0a;
+    font-style: italic;
+    line-height: 1.4;
+    position: relative;
+    z-index: 1;
+  }
+
+  .quote-block .attribution {
+    color: rgba(10, 10, 9, 0.4);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-top: 12px;
+    font-style: normal;
+  }
+
+  .closing-section {
+    padding: 100px var(--gutter);
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    background: var(--black);
+    color: var(--white);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .closing-section::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at center, rgba(201, 162, 39, 0.03) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .closing-section .content {
+    position: relative;
+    z-index: 1;
+    max-width: var(--container);
+    margin: 0 auto;
+  }
+
+  .closing-section h2 {
+    font-size: clamp(34px, 4.5vw, 52px);
+    font-weight: 500;
+    margin-top: 20px;
+    max-width: 16ch;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.08;
+    color: var(--white);
+    letter-spacing: -0.01em;
+  }
+
+  .closing-section .sub {
+    color: rgba(255, 255, 255, 0.55);
+    margin-top: 24px;
+    font-size: 16px;
+    line-height: 1.8;
+    max-width: 50ch;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .closing-section .tagline {
+    color: var(--gold);
+    margin-top: 44px;
+    font-family: var(--font-display);
+    font-size: clamp(28px, 3.5vw, 40px);
+    letter-spacing: 0.08em;
+    opacity: 0.9;
+  }
+
+  .closing-section .tagline-line {
+    width: 40px;
+    height: 1px;
+    background: var(--gold);
+    margin: 0 auto 44px;
+    opacity: 0.3;
+  }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .grid-2col {
+      grid-template-columns: 1fr !important;
+      gap: 40px !important;
+    }
+
+    .grid-3col {
+      grid-template-columns: 1fr !important;
+      gap: 20px !important;
+    }
+
+    .about-hero {
+      padding: 80px var(--gutter) 60px;
+    }
+
+    .about-hero h1 {
+      max-width: 12ch;
+    }
+
+    .about-hero p {
+      font-size: 16px;
+    }
+
+    .closing-section {
+      padding: 70px var(--gutter);
+    }
+
+    .quote-block {
+      padding: 24px 24px;
+    }
+
+    .stat-row {
+      justify-content: center;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .about-hero h1 {
+      font-size: 32px;
+    }
+
+    .about-hero p {
+      font-size: 14px;
+    }
+
+    .stat-number {
+      font-size: 28px;
+    }
+
+    .card-3d {
+      padding: 24px 20px;
+    }
+
+    .quote-block p {
+      font-size: 18px;
+    }
+
+    .closing-section h2 {
+      font-size: 28px;
+    }
+  }
+</style>
 </head>
 <body class="on-light">
 
 <header class="site-header" id="site-header"></header>
 
 <main id="main">
-  <div class="about-hero">
-    <p class="eyebrow" style="justify-content:center;">Since 2019</p>
-    <h1 class="section-title">A discipline of three tones.</h1>
-    <p>JOUD began as a rejection of noise — of endless seasonal color stories and disposable cloth. We chose black, white, and gold, and have spent every collection since proving that restraint is not a limitation, but a craft.</p>
+
+  <!-- ============================================
+       HERO
+       ============================================ -->
+  <section class="about-hero">
+    <p class="eyebrow" style="justify-content:center;">Our Story</p>
+    <h1>Born from a <em>simple</em> idea.</h1>
+    <p>
+      To create a brand that feels different. Rooted in the spirit of
+      Arab identity and inspired by the meaning of generosity.
+    </p>
+  </section>
+
+  <!-- ============================================
+       SECTION 1: Vision
+       ============================================ -->
+  <section class="section section-tight">
+    <div class="container">
+      <div class="grid-2col" style="display: grid; grid-template-columns: 1fr 1fr; gap: 70px; align-items: center;">
+        <div data-reveal>
+          <p class="eyebrow">The Vision</p>
+          <h2 class="section-title-lg" style="margin-top: 14px;">
+            More than a <br>fashion brand.
+          </h2>
+          <p class="text-muted" style="margin-top: 22px;">
+            JOUD is a vision built around <strong>individuality</strong>,
+            <strong>quality</strong>, and the belief that what you wear should
+            feel uniquely yours.
+          </p>
+          <p class="text-muted" style="margin-top: 18px;">
+            We created JOUD with one goal in mind: to build a brand that people
+            love, trust, and remember — not only in Egypt, but around the world.
+          </p>
+          <div class="stat-row" style="margin-top: 36px; display: flex; gap: 48px; align-items: center;">
+            <div>
+              <span class="stat-number">2019</span>
+              <span class="stat-label">Founded</span>
+            </div>
+            <div class="stat-divider" style="width: 1px; height: 40px; background: rgba(0,0,0,0.08);"></div>
+            <div>
+              <span class="stat-number">03</span>
+              <span class="stat-label">Collections</span>
+            </div>
+          </div>
+        </div>
+       <div class="split-media" data-reveal id="about-media-1" style="max-width: 70%; margin: 0 auto; aspect-ratio: 3/4; overflow: hidden; border: 1px solid rgba(0,0,0,0.06); border-radius: 2px;"></div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       SECTION 2: What We Make
+       ============================================ -->
+  <section class="section" style="background: #f6f4ee; border-top: 1px solid rgba(0,0,0,0.04); border-bottom: 1px solid rgba(0,0,0,0.04);">
+    <div class="container">
+      <div style="text-align: center; max-width: 60ch; margin: 0 auto;" data-reveal>
+        <p class="eyebrow" style="justify-content:center;">The Craft</p>
+        <h2 class="section-title-lg" style="margin-top: 14px;">What we make.</h2>
+        <p class="text-muted" style="margin-top: 18px;">
+          From T-shirts and shirts to trousers and accessories, JOUD brings
+          together carefully selected pieces for both women and men. Every
+          piece is created with close attention to quality, materials, design,
+          finishing, comfort, and detail.
+        </p>
+      </div>
+      <div class="grid-3col" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin-top: 48px;">
+        <div class="card-3d" data-reveal>
+          <span class="number">01</span>
+          <h4>Quality First</h4>
+          <p>Every piece is created with close attention to materials, design, finishing, and detail.</p>
+        </div>
+        <div class="card-3d" data-reveal>
+          <span class="number">02</span>
+          <h4>Made to be Worn</h4>
+          <p>Designed for comfort and everyday wear — not just to be looked at.</p>
+        </div>
+        <div class="card-3d" data-reveal>
+          <span class="number">03</span>
+          <h4>Uniquely Yours</h4>
+          <p>That feeling of wearing something that isn't what everyone else has.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       SECTION 3: Experience + Quote
+       ============================================ -->
+  <section class="section section-tight">
+    <div class="container">
+      <div class="grid-2col" style="display: grid; grid-template-columns: 1fr 1fr; gap: 70px; align-items: center;">
+        <div class="split-media" data-reveal id="about-media-2" style="aspect-ratio: 4/5; overflow: hidden; border: 1px solid rgba(0,0,0,0.06); border-radius: 2px;"></div>
+        <div data-reveal>
+          <p class="eyebrow">The Experience</p>
+          <h2 class="section-title-lg" style="margin-top: 14px;">
+            Luxury is not only<br>about the product.
+          </h2>
+          <p class="text-muted" style="margin-top: 22px;">
+            It is also about the <strong>experience</strong>. From the moment
+            you discover JOUD to long after your purchase, we believe that
+            every customer deserves care, attention, and an experience that
+            feels as special as the product itself.
+          </p>
+          <div class="quote-block">
+            <p>"To give you what you need, and to create what you want."</p>
+            <div class="attribution">— Our Vision</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 4: Closing - نسخة مدمجة -->
+<section style="padding: 40px var(--gutter); border-top: 1px solid rgba(255,255,255,0.06); border-bottom: 1px solid rgba(255,255,255,0.06); background: var(--black); color: var(--white);">
+  <div style="max-width: var(--container); margin: 0 auto; text-align: center;">
+    <p class="eyebrow" style="justify-content:center; color: var(--gold);">Our Identity</p>
+    <h2 style="font-size: clamp(30px, 4vw, 44px); font-weight: 500; margin-top: 12px; max-width: 16ch; margin-left: auto; margin-right: auto; line-height: 1.1; color: #ffffff; letter-spacing: -0.01em;">
+      Inspired by our roots.<br>Defined by individuality.
+    </h2>
+    <p style="color: rgba(255,255,255,0.6); margin-top: 16px; font-size: 15px; line-height: 1.7; max-width: 50ch; margin-left: auto; margin-right: auto;">
+      JOUD is for those who appreciate distinctive pieces, refined quality, and a style that feels truly their own.
+    </p>
+    <div style="width: 30px; height: 1px; background: var(--gold); margin: px auto; opacity: 0.3;"></div>
+    <p style="color: var(--gold); font-family: var(--font-display); font-size: clamp(24px, 3vw, 34px); letter-spacing: 0.08em; opacity: 0.9; margin-top: 0;">
+      This is JOUD
+    </p>
+    <div style="margin-top: 10px;">
+      <a href="shop.html" class="btn btn-gold" style="padding: 12px 36px; font-size: 10px; letter-spacing: 0.2em;">Explore the Collection</a>
+    </div>
   </div>
+</section>
 
-  <section class="section section-tight">
-    <div class="container split">
-      <div class="split-media" data-reveal id="about-media-1"></div>
-      <div class="split-copy" data-reveal>
-        <p class="eyebrow">Our Approach</p>
-        <h2 class="section-title">Fewer pieces, worn longer.</h2>
-        <p>Each garment begins with cloth, not sketches. We source heavyweight cotton, brushed fleece, and structured wool-blends first, then design around what the material wants to do.</p>
-        <p>Every release is small and considered. We would rather sell out of a piece we're proud of than restock something built to be replaced.</p>
-      </div>
-    </div>
-  </section>
+  <!-- ============================================
+       NEWSLETTER
+       ============================================ -->
+ 
 
-  <section class="section">
-    <div class="container">
-      <div class="section-head" data-reveal>
-        <div>
-          <p class="eyebrow">What We Stand For</p>
-          <h2 class="section-title">Values</h2>
-        </div>
-      </div>
-      <div class="values-grid">
-        <div class="value-card" data-reveal>
-          <b>01</b>
-          <h4>Material First</h4>
-          <p>We choose cloth before silhouette. If the fabric isn't right, the design doesn't move forward.</p>
-        </div>
-        <div class="value-card" data-reveal>
-          <b>02</b>
-          <h4>Restraint as Craft</h4>
-          <p>Black, white, and gold — a fixed palette that forces every decision to be about cut, weight, and finish.</p>
-        </div>
-        <div class="value-card" data-reveal>
-          <b>03</b>
-          <h4>Built to Outlast</h4>
-          <p>Reinforced seams, considered hardware, and finishes designed to age well rather than wear out.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section section-tight">
-    <div class="container">
-      <div class="section-head" data-reveal>
-        <div>
-          <p class="eyebrow">Timeline</p>
-          <h2 class="section-title">The House So Far</h2>
-        </div>
-      </div>
-      <div class="timeline">
-        <div class="timeline-row" data-reveal>
-          <div class="timeline-year">2019</div>
-          <div class="timeline-copy">
-            <h4>Noir Line launches</h4>
-            <p>JOUD opens with a tightly edited run of tonal black essentials — the foundation of everything since.</p>
-          </div>
-        </div>
-        <div class="timeline-row" data-reveal>
-          <div class="timeline-year">2021</div>
-          <div class="timeline-copy">
-            <h4>Gold Standard introduced</h4>
-            <p>Metallic gold hardware and thread detailing become a permanent signature across outerwear and accessories.</p>
-          </div>
-        </div>
-        <div class="timeline-row" data-reveal>
-          <div class="timeline-year">2023</div>
-          <div class="timeline-copy">
-            <h4>Studio Essentials</h4>
-            <p>A dedicated line of everyday staples, engineered quietly, for pieces worn on rotation rather than occasion.</p>
-          </div>
-        </div>
-        <div class="timeline-row" data-reveal>
-          <div class="timeline-year">2025</div>
-          <div class="timeline-copy">
-            <h4>Monochrome debuts</h4>
-            <p>Ivory and ink, stripped of gold entirely — the quietest collection JOUD has released to date.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="newsletter-band" data-reveal>
-    <div class="container">
-      <p class="eyebrow" style="justify-content:center;">Join Us</p>
-      <h2 class="section-title">Shop the current collection</h2>
-      <div class="hero-actions" style="justify-content:center; margin-top:10px;">
-        <a href="shop.html" class="btn btn-gold">Enter the Shop</a>
-      </div>
-    </div>
-  </section>
 </main>
 
 <footer class="site-footer" id="site-footer"></footer>
@@ -117,8 +452,21 @@
 <script src="js/layout.js"></script>
 <script>
   injectLayout("about");
-  document.getElementById("about-media-1").innerHTML = `<img src="${PRODUCTS[16].images[1]}" alt="JOUD atelier" loading="lazy" />`;
+
+  document.getElementById("about-media-1").innerHTML =
+    `<img src="${PRODUCTS[16].images[1]}" alt="JOUD atelier" loading="lazy" style="width:100%; height:100%; object-fit:cover;" />`;
+
+  document.getElementById("about-media-2").innerHTML =
+    `<img src="${PRODUCTS[8].images[2]}" alt="JOUD studio detail" loading="lazy" style="width:100%; height:100%; object-fit:cover;" />`;
+
   initScrollReveal();
+
+  document.querySelector("[data-newsletter-form]").addEventListener("submit", function(e) {
+    e.preventDefault();
+    showToast("You're on the list");
+    this.reset();
+  });
 </script>
+
 </body>
 </html>

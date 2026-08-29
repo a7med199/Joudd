@@ -152,27 +152,6 @@
     </div>
   </section>
 
-  <!-- EDITORIAL SPLIT -->
-  <section class="section">
-    <div class="container split">
-      <div class="split-media" data-reveal></div>
-      <div class="split-copy" data-reveal>
-        <p class="eyebrow">The House</p>
-        <h2 class="section-title">Three tones. No noise.</h2>
-        <p>Every JOUD piece is developed against a single discipline: black, white, and gold, nothing else. We build in heavyweight cloth, finish by hand, and release in small, considered runs rather than constant cycles.</p>
-        <p>The result is a wardrobe that doesn't compete with itself — pieces designed to be worn together, season after season.</p>
-        <div class="stat-row">
-          <div class="stat"><b>03</b><span>Product Lines</span></div>
-          <div class="stat"><b>03</b><span>Collections</span></div>
-          <div class="stat"><b>2019</b><span>Founded</span></div>
-        </div>
-        <div class="hero-actions" style="margin-top:34px;">
-          <a href="about.html" class="btn btn-dark">Our Story</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- NEWSLETTER -->
   <section class="newsletter-band" data-reveal>
     <div class="container">
@@ -235,9 +214,6 @@
       <div class="cat-tile-name">${c.name}<span class="arrow">&rarr;</span></div>
     </a>`).join("");
 
-  // Split media image
-  document.querySelector(".split-media").innerHTML =
-    `<img src="${PRODUCTS[8].images[2]}" alt="JOUD studio detail" loading="lazy" />`;
 
   bindProductCardEvents();
   initScrollReveal();
