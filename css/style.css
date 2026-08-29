@@ -353,7 +353,7 @@ h3, .h3{ font-family: var(--font-display); font-weight: 500; }
 
 /* Hero always sits on its own dark image, regardless of page theme */
 .hero .btn-ghost{ color: var(--white); border-color: var(--white); }
-.hero .btn-ghost:hover{ background: var(--white); border-color: var(--white); color: var(--black); }
+.hero .btn-ghost:hover{ background: transparent; border-color: var(--white); color: var(--black); }
 
 /* ==========================================================================
    Marquee
@@ -564,7 +564,7 @@ body.on-light .map-label{ color: rgba(10,10,9,.55); }
 body.on-light .form-field label{ color: rgba(10,10,9,.55); }
 body.on-light .form-field input, body.on-light .form-field select, body.on-light .form-field textarea{ border-bottom-color: rgba(0,0,0,.3); color:#0a0a0a; }
 body.on-light .form-field input::placeholder, body.on-light .form-field textarea::placeholder{ color: rgba(10,10,9,.4); }
-body.on-light .btn-ghost{ border-color: rgba(0,0,0,.3); color:#0a0a0a; }
+body.on-light .btn-ghost{ border-color: #ffffff; color:#ffffff; }
 body.on-light .btn-ghost:hover{ border-color: var(--gold); color: var(--gold); }
 body.on-light .shop-empty{ color: rgba(10,10,9,.6); }
 body.on-light .shop-empty h3{ color:#0a0a0a; }
