@@ -3,9 +3,9 @@
    ========================================================================== */
 
 const COLLECTIONS = [
-  { id: "after-dark", name: "After Dark", tag: "Collection 01 / 2025", blurb: "The city after the noise. Dense textures, low light and silhouettes built for the long way home." },
-  { id: "daily-ritual", name: "Daily Ritual", tag: "The Essentials Edit", blurb: "The pieces that make getting dressed feel like second nature." },
-  { id: "field-notes", name: "Field Notes", tag: "Limited Study 02", blurb: "Utility, refined. A small run of modular layers for moving through the world." },
+  { id: "after-dark", name: "After Dark", tag: "Collection / 01"},
+  { id: "daily-ritual", name: "Daily Ritual", tag: "Collection / 02"},
+  { id: "field-notes", name: "Field Notes", tag: "Collection / 03"},
 ];
 
 const CATEGORIES = [
@@ -84,8 +84,8 @@ function placeholderImage(product, variant = 0) {
     <circle cx="${cx}" cy="${cy}" r="${ringR}" fill="none" stroke="#c9a24a" stroke-width="1" opacity="0.5"/>
     <circle cx="${cx}" cy="${cy}" r="${ringR - 14}" fill="none" stroke="#c9a24a" stroke-width="0.6" opacity="0.3"/>
     <text x="${cx}" y="${cy + 34}" text-anchor="middle" font-family="'Inter', sans-serif" font-size="92" fill="#e8cd8a" opacity="0.92">${initials}</text>
-    <text x="40" y="${h - 46}" font-family="'Inter', sans-serif" font-size="20" letter-spacing="4" fill="#f6f4ee" opacity="0.55">${product.category.toUpperCase()}</text>
-    <text x="40" y="${h - 20}" font-family="'Inter', sans-serif" font-size="14" letter-spacing="3" fill="#c9a24a" opacity="0.7">JOUD — ${product.collection.toUpperCase()}</text>
+    <text x="60" y="${h - 66}" font-family="'Inter', sans-serif" font-size="20" letter-spacing="4" fill="#f6f4ee" opacity="0.55">${product.category.toUpperCase()}</text>
+    <text x="60" y="${h - 40}" font-family="'Inter', sans-serif" font-size="14" letter-spacing="3" fill="#c9a24a" opacity="0.7">JOUD — ${product.collection.toUpperCase()}</text>
     <rect x="24" y="24" width="${w - 48}" height="${h - 48}" fill="none" stroke="#f6f4ee" stroke-opacity="0.08" stroke-width="1"/>
   </svg>`;
 
@@ -129,7 +129,6 @@ const RAW_PRODUCTS = [
   { id: "cg-004", name: "Ivory Cargo", category: "sweatpants", collection: "after-dark", gender: "women", price: 148, desc: "Relaxed cargo in undyed cotton with an adjustable drawcord waist." },
 
   // SHIRTS
-  { id: "sh-001", name: "Noir Overshirt", category: "tshirts", collection: "after-dark", gender: "men", price: 138, isNew: true, desc: "Heavyweight cotton overshirt with a boxy fit and corozo buttons." },
   { id: "sh-002", name: "Gold Button Shirt", category: "tshirts", collection: "field-notes", gender: "women", price: 128, desc: "Poplin shirt with hand-set gold-tone buttons and a camp collar." },
   { id: "sh-003", name: "Studio Oxford", category: "tshirts", collection: "daily-ritual", gender: "men", price: 98, isBestSeller: true, desc: "A classic oxford cloth shirt built for rotation between studio and street." },
   { id: "sh-004", name: "Ivory Linen Shirt", category: "tshirts", collection: "after-dark", gender: "women", price: 118, desc: "Lightweight linen-cotton shirt in an undyed ivory finish." },
