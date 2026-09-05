@@ -21,7 +21,7 @@ function injectLayout(activePage) {
         </button>
 
         <a href="index.html" class="logo" aria-label="JOUD home">
-          <span class="logo-mark">J</span><span class="logo-word">JOUD</span>
+          <img src="assets/logo.png" alt="JOUD" class="logo-img" />
         </a>
 
         <nav class="nav-primary" aria-label="Primary">
@@ -65,7 +65,9 @@ function injectLayout(activePage) {
     footer.innerHTML = `
       <div class="footer-grid">
         <div class="footer-brand">
-          <a href="index.html" class="logo logo-footer"><span class="logo-mark">J</span><span class="logo-word">JOUD</span></a>
+          <a href="index.html" class="logo logo-footer">
+            <img src="assets/logo.png" alt="JOUD" class="logo-img" />
+          </a>
           <p>A premium ready-to-wear house working in black, white, and gold. Cut for permanence, not for seasons.</p>
         </div>
         <div class="footer-col">
