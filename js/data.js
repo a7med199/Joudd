@@ -160,5 +160,5 @@ function getRelatedProducts(product, count = 4) {
 }
 
 function formatPrice(n) {
-  return "$" + n.toFixed(2).replace(/\.00$/, "");
+  return n.toLocaleString("en-EG", { minimumFractionDigits: 0, maximumFractionDigits: 2 }) + " EGP";
 }

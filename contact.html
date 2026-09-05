@@ -19,11 +19,6 @@
 
   <div class="contact-layout">
     <div>
-      <div class="confirm-banner" id="contact-confirm">
-        <svg viewBox="0 0 24 24" width="18" height="18"><circle cx="12" cy="12" r="10" fill="none" stroke="#c9a24a" stroke-width="1.4"/><path d="M8 12.5l2.5 2.5L16 9" fill="none" stroke="#c9a24a" stroke-width="1.4"/></svg>
-        <span>Message sent — our client services team will reply within one business day.</span>
-      </div>
-
       <form id="contact-form" novalidate>
         <div class="form-row">
           <div class="form-field" data-field="name">
@@ -78,10 +73,6 @@
         <a href="#">TikTok</a>
         <a href="#">Pinterest</a>
       </div>
-      <div class="map-block" data-reveal>
-        <div class="map-pin"></div>
-        <span class="map-label">Giza, Egypt</span>
-      </div>
     </div>
   </div>
 </main>
@@ -96,8 +87,10 @@
   injectLayout("contact");
   initScrollReveal();
 
+  // Brand's WhatsApp number (digits only, country code included, no "+")
+  const WHATSAPP_NUMBER = "201033515073";
+
   const form = document.getElementById("contact-form");
-  const confirmBanner = document.getElementById("contact-confirm");
 
   function setFieldError(field, message) {
     const wrap = form.querySelector(`[data-field="${field}"]`);
@@ -134,10 +127,24 @@
       showToast("Please check the highlighted fields");
       return;
     }
-    confirmBanner.classList.add("is-visible");
-    showToast("Message sent");
+
+    const name = form.name.value.trim();
+    const email = form.email.value.trim();
+    const subject = form.subject.value;
+    const message = form.message.value.trim();
+
+    const whatsappMessage =
+      "New message from the JOUD website:\n\n" +
+      "Name: " + name + "\n" +
+      "Email: " + email + "\n" +
+      "Subject: " + subject + "\n" +
+      "Message: " + message;
+
+    const whatsappUrl = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(whatsappMessage);
+
+    showToast("Redirecting you to WhatsApp");
     form.reset();
-    confirmBanner.scrollIntoView({ behavior: "smooth", block: "center" });
+    window.location.href = whatsappUrl;
   });
 </script>
 </body>

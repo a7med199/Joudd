@@ -13,7 +13,7 @@ function injectLayout(activePage) {
   if (header) {
     header.innerHTML = `
       <div class="announce-bar">
-        <p>Complimentary shipping on orders over $200 &mdash; New season now live</p>
+        <p>Complimentary shipping on orders over 200 EGP &mdash; New season now live</p>
       </div>
       <div class="header-main">
         <button class="icon-btn menu-toggle" data-mobile-menu-toggle aria-label="Open menu">
@@ -93,7 +93,7 @@ function injectLayout(activePage) {
       </div>
       <div class="footer-bottom">
         <p>&copy; <span data-year></span> JOUD. All rights reserved.</p>
-        <p class="footer-locale">EG &middot; USD $</p>
+        <p class="footer-locale">EG &middot; EGP £</p>
       </div>
     `;
     const yearEl = footer.querySelector("[data-year]");
