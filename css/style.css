@@ -565,7 +565,6 @@ body.on-light .stat span{ color: rgba(10,10,9,.55); }
 
 body.on-light .contact-info-block p, body.on-light .contact-info-block a{ color: rgba(10,10,9,.65); }
 body.on-light .contact-info-block a:hover{ color: var(--gold); }
-
 body.on-light .social-row a{ color:#0a0a0a; border-bottom-color: rgba(0,0,0,.3); }
 body.on-light .social-row a:hover{ color: var(--gold); border-color: var(--gold); }
 body.on-light .map-block{ background:#f6f4ee; border-color: rgba(0,0,0,.14); }
